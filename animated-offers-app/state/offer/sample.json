@@ -1,0 +1,120 @@
+{
+  "params": {
+    "images": [
+      {
+        "url": "https://res.cloudinary.com/blazi/image/upload/v1628348502/offers/somdwnjtbfnrb1sjypx6.png"
+      },
+      {
+        "url": "https://res.cloudinary.com/blazi/image/upload/v1628348539/offers/yu1bd5k1lsmke4k9nsqi.png"
+      },
+      {
+        "url": "https://res.cloudinary.com/blazi/image/upload/v1628348555/offers/f2ued9sjn8j6dsnvvecs.png"
+      },
+      {
+        "url": "https://res.cloudinary.com/blazi/image/upload/v1628348558/offers/w2aumpaj0q0xyjz6heyu.png"
+      }
+    ],
+    "text": [
+      {
+        "key": "promoText1",
+        "value": "Special Offer"
+      },
+      {
+        "key": "promoText2",
+        "value": "90% off"
+      }
+    ]
+  },
+  "shop": "animated-offers-dev-yomna.myshopify.com",
+  "template": {
+    "id": "60ee58a4e4168197a074954b",
+    "name": "Circle Offer",
+    "scriptPath": "/styles/1-idea/idea.js",
+    "templatePath": "/styles/1-idea"
+  },
+  "catId": 1,
+  "isActive": true,
+  "startDate": "1-1-2020",
+  "endDate": "1-1-2021",
+  "triggers": [
+    {
+      "type": "product",
+      "products": [
+        {
+          "id": "123",
+          "title": "abc"
+        }
+      ]
+    },
+    {
+      "type": "collection",
+      "collections": [
+        {
+          "id": "123",
+          "title": "abc"
+        }
+      ]
+    },
+    {
+      "type": "exit_intent"
+    }
+  ],
+  "actions": [
+    {
+      "type": "discount_code",
+      "discountCode": "123"
+    },
+    {
+      "type": "redirect",
+      "url": "123"
+    },
+    {
+      "type": "add_to_cart",
+      "discount": {
+        "type": "percent",
+        "amount": 10
+      },
+      "products": [
+        {
+          "id": "123",
+          "title": "title"
+        }
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "type": "order_total_more_than",
+      "value": 100
+    },
+    {
+      "type": "order_total_less_than",
+      "value": 500
+    },
+
+    {
+      "type": "order_items_more_than",
+      "value": 1
+    },
+    {
+      "type": "order_items_les_than",
+      "value": 5
+    },
+    {
+      "type": "cart_total_more_than",
+      "value": 100
+    },
+    {
+      "type": "cart_total_less_than",
+      "value": 500
+    },
+    {
+      "type": "cart_items_more_than",
+      "value": 1
+    },
+    {
+      "type": "cart_items_les_than",
+      "value": 5
+    }
+  ]
+}
