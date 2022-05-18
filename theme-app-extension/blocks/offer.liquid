@@ -1,0 +1,103 @@
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
+<script async src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script >
+
+    const storeFrontUrl ='https://127.0.0.1:8000/';
+    const url = 'https://localhost/api/rest/public/get-shop-offers?shop=animated-offers-dev-menna.myshopify.com';
+    let shopName = "";
+    let addToCartURL = "";
+    let varID = 0;
+    fetch(url) .then(response => response.json())
+        .then(async data => {
+
+
+            const Activeoffers= data.filter(elm => elm.isActive == true)
+
+            var elm=[]
+            if(Activeoffers.length>0){
+                // elm = Activeoffers.reduce(function(prev, current) {
+                //     return (prev.weight > current.weight) ? prev : current
+                // })
+
+                elm=Activeoffers[0];
+                    
+                const container = document.getElementById('myspan');
+
+                const path = `${storeFrontUrl}/${elm.template.path}/index.js`;
+                let module = await import(path);
+                console.log(elm)
+                console.log(elm.shop);
+                console.log(elm.actions[0].products[0]._id);
+                shopName= elm.shop;
+                varID = parseInt(elm.actions[0].products[0].id.split("/ProductVariant/")[1].replace("'",''));
+                console.log(varID);
+               
+                addToCartURL = 'https://' + shopName + '/cart/add.js';
+
+
+
+
+                        container.innerHTML = '';
+                        module.render(elm, container,  function appendCSS(css){
+                            var head = document.getElementsByTagName('head')[0];
+                            var s = document.createElement('style');
+                            s.setAttribute('type', 'text/css');
+                            if (s.styleSheet) {   // IE
+                                s.styleSheet.cssText = css;
+                            } else {                // the world
+                                s.appendChild(document.createTextNode(css));
+                            }
+                            head.appendChild(s);
+                        }
+                    );
+                    // }
+                // }, false);
+
+               
+            }
+})
+
+
+
+
+
+    window.addEventListener('click', function (event) {
+        if(event.target.id ==="tiltCTA"){
+                     
+    fetch(addToCartURL, {
+        method: 'POST',
+        headers: {
+       'Content-Type': 'application/json'
+        },
+        body: JSON.stringify( {
+            items: [{
+            id: varID,
+            quantity: 1
+             }]
+            })
+       }).then(response => {
+           console.log(response.text());
+       }).catch((error) => {
+        console.error('Error:', error);
+      });
+
+  
+    }});
+
+
+
+
+
+</script>
+
+<div id="myspan">
+</div>
+
+{% schema %}
+{
+"name":"Tilt Card",
+"target":"section"
+
+}
+{% endschema %}
