@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>2-Promo 03</title>
+  <link
+          href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+          rel="stylesheet"
+  />
+  <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.12/lottie.min.js"
+          integrity="sha512-BB7rb8ZBAxtdJdB7nwDijJH9NC+648xSzviK9Itm+5APTtdpgKz1+82bDl4znz/FBhd0R7pJ/gQtomnMpZYzRw=="
+          crossorigin="anonymous"
+  ></script>
+</head>
+<body>
+<div id="container"></div>
+
+<script type="module">
+  import { render } from "./promo03.js";
+  const container = document.getElementById("container");
+  const offerBaseUrl = document.location.href;
+  const params = {
+    promoText: "Special Offer \r 50% off",
+  };
+
+  const result = render(container, offerBaseUrl, params);
+  console.log("render response: " + result);
+
+  window.addEventListener('message', function (event) {
+    container.innerHTML = '';
+    render(container, offerBaseUrl, event.data);
+  }, false);
+</script>
+
+
+
+</body>
+</html>

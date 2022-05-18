@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+
+
+    <style>
+
+        .all-page {
+            background: white;
+            font-family: "Questrial", sans-serif;
+            height: 100%;
+        }
+        .banner {
+            text-align: center;
+            background: #fafafa;
+            /*   padding: 17px; */
+            border-top: 2px solid #e1e1e1;
+            border-bottom: 2px solid #e1e1e1;
+            color: black;
+
+        }
+        .title1 {
+            font-size: 12px;
+            color: #545454;
+            height: 7px;
+        }
+
+        .title2 {
+            font-size: 18px;
+            color: #3d2f2d;
+            height: 6px;
+        }
+        .title3 {
+            font-size: 18px;
+            color: #0ca127;
+            height: 7px;
+        }
+
+        .add-product {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 28px;
+            color: #585858;
+            height: 7px;
+        }
+
+        .product-description {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            color: #545454;
+            height: 7px;
+        }
+
+        .quantity {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 35px;
+        }
+
+        .quanity-input {
+            padding: 12px 20px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .price-tags {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .old-price {
+            text-decoration: line-through;
+            font-size: 18px;
+            color: #585858;
+            height: 1px;
+            margin-left: 6px;
+        }
+
+        .new-price {
+            font-size: 18px;
+            height: 1px;
+            margin-left: 6px;
+            color: #403331;
+        }
+        .save {
+            color: red;
+            font-size: 18px;
+            height: 1px;
+            margin-left: 6px;
+        }
+
+        .total-price {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            height: 1px;
+            color: #403331;
+        }
+
+        .pic-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pic {
+            padding: 14px;
+            border: 1px solid #e1e1e1;
+            /*width: 60%*/
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .decline-offer {
+            color: #1878b9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 30px;
+        }
+
+        .accept-offer {
+            background: #1878b9;
+            color: white;
+            padding: 21px 26px;
+            border: 2px;
+            border-radius: 6px;
+            margin-right: 30px;
+        }
+
+
+    </style>
+</head>
+
+
+<body class ="all-page">
+<div class="all-page">
+    <div class="banner">
+        <p class="title1">Special Offer</p>
+        <p class="title2" id ="offerText1">THANK YOU</p>
+        <p class="title2" id ="offerText2">for joining our family</p>
+        <p class="title3" id="offerText3">Enjoy our offer and save up to 20%</p>
+    </div>
+
+    <div class="product-details">
+        <p class="add-product" id = "offerText4">Add cookies to your order now</p>
+        <p class="product-description">
+            A BOX OF 10 LOTUS COOKIES</p>
+
+        <div class="quantity">
+            <input class="quanity-input" type="number" placeholder="Quantity" step=1 min=1>
+        </div>
+        <div class="price-tags">
+
+            <p class="old-price">$20</p>
+
+            <p class="new-price">$15 CAD</p>
+
+            <p class="save">20% Off!</p>
+        </div>
+        <p class="total-price">Total : 135$</p>
+
+    </div>
+
+    <div class="pic-container">
+        <img class="pic" id ="offerImg1"  width="60%"  src=" https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/delish-ms-fields-cookies-024-1544735513.jpg?crop=1xw:0.75xh;center,top&resize=640:*">
+    </div>
+
+    <br>
+
+    <div class="buttons">
+        <a href="" class="decline-offer"> Decline Offer</a>
+        <button class="accept-offer"> Accept Offer Now!</button>
+
+    </div>
+</div>
+<script>
+
+
+
+
+    window.addEventListener('message', function (event) {
+        if (event.data.text && event.data.images) {
+
+            if (event.data.text[0])
+                document.getElementById('offerText1').innerText = event.data.text[0].value;
+            if (event.data.text[1])
+                document.getElementById('offerText2').innerText = event.data.text[1].value;
+            if (event.data.text[2])
+                console.log(event.data.text[2])
+                document.getElementById('offerText3').innerText = event.data.text[2].value;
+            if (event.data.text[3])
+                console.log(event.data.text[3])
+            document.getElementById('offerText4').innerText = event.data.text[3].value;
+            if (event.data.images[0])
+                document.getElementById('offerImg1').src = event.data.images[0]?.url;
+
+        }
+
+
+    }, false);
+
+
+
+
+
+</script>
+</body>
+</html>

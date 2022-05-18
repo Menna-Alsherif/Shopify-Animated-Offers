@@ -1,0 +1,25 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Lottie</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.5/lottie.min.js"
+      integrity="sha512-0bCDSnaX8FOD9Mq8WbHcDwshXwCB5V4EP+UBu87WQgga2b7lAsuEbaSmIZjH/XEmNhJuhrPbFHemre5HZwrk9w=="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body style="background-color: #ccc">
+    <div style="width: 900px; height: 600px" id="container"></div>
+    <script>
+      const element = document.getElementById("container");
+      const file = "69.json";
+      lottie.loadAnimation({
+        container: element, // the dom element that will contain the animation
+        renderer: "html",
+        loop: true,
+        autoplay: true,
+        path: file,
+      });
+    </script>
+  </body>
+</html>

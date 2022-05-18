@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>1-Idea</title>
+    <link
+            href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+            rel="stylesheet"
+    />
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"
+            integrity="sha512-BB7rb8ZBAxtdJdB7nwDijJH9NC+648xSzviK9Itm+5APTtdpgKz1+82bDl4znz/FBhd0R7pJ/gQtomnMpZYzRw=="
+            crossorigin="anonymous"
+    ></script>
+</head>
+<body>
+<div id="container"></div>
+
+<script type="module">
+    import {render} from "./idea.js";
+    const container = document.getElementById("container");
+    const offerBaseUrl = document.location.href;
+
+    const params = {
+        text: [
+            {key:'promoText1', value: 'Special offer'},
+            {key:'promoText2', value: '50% off'}
+        ],
+        images: {}
+    };
+
+    const result = render(container, offerBaseUrl, params);
+    console.log("render response: " + result);
+
+    window.addEventListener('message', function (event) {
+        if (event.data.text && event.data.images) {
+            container.innerHTML = '';
+            render(container, offerBaseUrl, event.data);
+        }
+    }, false);
+</script>
+
+
+</body>
+</html>
